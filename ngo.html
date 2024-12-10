@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Page</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4a00e0, #8e2de2);
+      color: white;
+    }
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-item {
+      font-size: 2em;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-item:hover {
+      transform: scale(1.1);
+      color: #ffd700;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 20px;
+      min-height: 90vh;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 50%;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .hero-content .btn-primary {
+      background-color: #ff5757;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-content .btn-primary:hover {
+      background-color: #e04343;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Feed Hope Logo">
+      <span>Share Bite</span>
+    </div>
+    <div class="nav-icons">
+      <a href="ngo.html" class="nav-item" title="Home"><i class="fas fa-home"></i></a>
+      <a href="request.html" class="nav-item" title="Saved Donations"><i class="fas fa-message"></i></a>
+      <a href="notifications.html" class="nav-item" title="Notifications"><i class="fas fa-bell"></i></a>
+      
+      <a href="profile.html" class="nav-item" title="Profile"><i class="fas fa-user"></i></a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome, NGO Partner!</h1>
+      <p>Help distribute donated food and resources to those in need. Together, we can make a difference!</p>
+      <a href="request.html" class="btn-primary">Request Food</a>
+    </div>
+    <div class="hero-image">
+      <img src="image (5).png" alt="NGO Assistance">
+    </div>
+  </header>
+</body>
+</html>

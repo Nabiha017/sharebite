@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Food</title>    
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="request-food-styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Feed Hope Logo">
+      <span>Share Bite</span>
+    </div>
+    <div class="nav-icons">
+      <a href="ngo.html" class="nav-item" title="Home"><i class="fas fa-home"></i></a>
+      <a href="#" class="nav-item" title="Requests" onclick="displayMyRequests()">
+        <i class="fas fa-envelope"></i>
+        <span id="request-count" class="badge"></span>
+      </a>
+      <a href="#" class="nav-item" title="Notifications"><i class="fas fa-bell"></i></a>
+      <a href="profile.html" class="nav-item" title="Profile"><i class="fas fa-user"></i></a>
+    </div>
+  </nav>
+
+  <!-- Donation Listings Section -->
+  <section class="donation-listings" id="donationListings">
+    <h2>Available Donations</h2>
+    <div id="donationListContainer">
+      <!-- Donations will be dynamically added here -->
+    </div>
+  </section>
+
+  <!-- Thank You Section (hidden by default) -->
+  <section class="thank-you" id="thankYouSection" style="display: none;">
+    <h2>Thank You!</h2>
+    <p>Your food request has been successfully submitted. We will process it shortly.</p>
+  </section>
+
+  <script>
+    // Sample data for donations (Replace with backend API call if available)
+    const sampleDonations = [
+      { foodType: "Bread", quantity: 20, location: "Downtown", contact: "1234567890" },
+      { foodType: "Fruits", quantity: 10, location: "Uptown", contact: "9876543210" },
+      { foodType: "Rice", quantity: 50, location: "Midtown", contact: "1122334455" }
+    ];
+
+    // Save sample data to localStorage (if not already present)
+    if (!localStorage.getItem("donations")) {
+      localStorage.setItem("donations", JSON.stringify(sampleDonations));
+    }
+
+    // Function to display donations
+    function displayDonations() {
+      const donations = JSON.parse(localStorage.getItem("donations")) || [];
+      const donationListContainer = document.getElementById("donationListContainer");
+
+      donationListContainer.innerHTML = ""; // Clear previous content
+
+      if (donations.length === 0) {
+        donationListContainer.innerHTML = "<p>No donations available at the moment.</p>";
+        return;
+      }
+
+      donations.forEach((donation, index) => {
+        const donationCard = document.createElement("div");
+        donationCard.className = "donation-card";
+        donationCard.innerHTML = `
+          <h3>${donation.foodType}</h3>
+          <div class="food-info">
+            <span>Quantity: ${donation.quantity} kg</span>
+            <span>Location: ${donation.location}</span>
+          </div>
+          <button class="btn-primary" onclick="requestDonation(${index})">Request</button>
+        `;
+        donationListContainer.appendChild(donationCard);
+      });
+    }
+
+    // Function to request a donation
+    function requestDonation(index) {
+      const donations = JSON.parse(localStorage.getItem("donations")) || [];
+      const selectedDonation = donations[index];
+
+      // Collect user's details for the request
+      const userName = prompt("Enter your name:");
+      const userContact = prompt("Enter your contact number:");
+
+      if (userName && userContact) {
+        if (confirm(`Request this donation?\n\nFood: ${selectedDonation.foodType}\nQuantity: ${selectedDonation.quantity}kg\nLocation: ${selectedDonation.location}`)) {
+          alert("Donation request submitted successfully!");
+
+          // Simulate a notification to donor (using an alert for now)
+          alert(`Notification sent to donor: "You have a new food request for ${selectedDonation.foodType} - ${selectedDonation.quantity}kg at ${selectedDonation.location}. Contact: ${userContact}"`);
+
+          // Show the Thank You section
+          document.getElementById("thankYouSection").style.display = "block";
+        }
+      } else {
+        alert("Please provide both your name and contact number to proceed.");
+      }
+    }
+
+    // Initialize donation list when the page loads
+    window.onload = function () {
+      displayDonations();
+    };
+  </script>
+
+</body>
+</html>

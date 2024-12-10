@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Donations</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="donate-now-styles.css">
+  <style>
+    /* Transparent Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+      padding: 10px 20px;
+      z-index: 1000;
+      color: white;
+      box-shadow: none; /* No shadow for a clean look */
+    }
+
+    .navbar .logo img {
+      width: 50px;
+      height: auto;
+    }
+
+    .navbar .nav-icons {
+      display: flex;
+      gap: 40px;
+    }
+
+    .navbar .nav-item i {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    /* Spacing for Donation History */
+    .donation-history {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      width: 80%;
+      margin: 100px auto 20px auto; /* Increased margin-top to create more space */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      color: #333;
+      max-height: 500px;
+      overflow-y: scroll;
+    }
+
+    .donation-history h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #ffbe0b;
+    }
+
+    .donation-card {
+      background: #f8f9fa;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 0.9rem;
+    }
+
+    .donation-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #007bff;
+    }
+
+    .donation-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .btn-back {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      width: 200px;
+    }
+
+    .btn-back:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Transparent Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Feed Hope Logo">
+      <span>Share Bite</span>
+    </div>
+    </div>
+    <div class="nav-icons">
+      <a href="#" class="nav-item" title="Home"><i class="fas fa-home"></i></a>
+      <a href="my donation.html" class="nav-item" title="Favorite"><i class="fas fa-heart"></i></a>
+
+      <a href="Notifications.html" class="nav-item" title="Notifications"><i class="fas fa-bell"></i></a>
+            <a href="Profile.html" class="nav-item" title="Profile"><i class="fas fa-user"></i></a>
+    </div>
+
+  </nav>
+
+  <!-- Donation History Section -->
+  <div class="donation-history" id="donationHistorySection">
+    <h2>My Donation History</h2>
+
+    <!-- Donation Cards will be dynamically added here -->
+  </div>
+
+  <a href="donor.html" class="btn-back">Back to Home</a>
+
+  <script>
+    // Display donation history from localStorage
+    document.addEventListener("DOMContentLoaded", function() {
+      const donationHistorySection = document.getElementById("donationHistorySection");
+      const donations = JSON.parse(localStorage.getItem("donations")) || [];
+
+      if (donations.length === 0) {
+        donationHistorySection.innerHTML = "<p>No donations made yet. Please submit a donation.</p>";
+      } else {
+        donations.forEach(donation => {
+          // Create a card for each donation
+          const donationCard = document.createElement("div");
+          donationCard.classList.add("donation-card");
+
+          donationCard.innerHTML = `
+            <h3>${donation.foodType}</h3>
+            <p><strong>Quantity:</strong> ${donation.quantity} kg</p>
+            <p><strong>Pickup Location:</strong> ${donation.location}</p>
+            <p><strong>Contact Number:</strong> ${donation.contact}</p>
+          `;
+
+          // Append the donation card to the history section
+          donationHistorySection.appendChild(donationCard);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

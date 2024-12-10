@@ -1,0 +1,153 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+  padding-top: 60px; /* Space for navbar */
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0; /* Fixed left alignment */
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box; /* Ensure padding doesn't overflow the width */
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 50px;
+}
+
+.nav-item {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:hover {
+  transform: scale(1.2);
+}
+
+/* Donation Listings Section */
+.donation-listings {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 15px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 800px;
+  width: 90%;
+  margin-top: 80px; /* Added space for the fixed navbar */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Make donation listings scrollable */
+  max-height: 70vh; /* Limit the height and make it scrollable */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.donation-listings h2 {
+  font-size: 1.8rem;
+  color: #2575fc;
+  margin-bottom: 15px;
+}
+
+.donation-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.donation-card h3 {
+  color: #ff6f61;
+  margin-bottom: 10px;
+}
+
+.donation-card p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.donation-card .food-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.donation-card .food-info span {
+  font-weight: bold;
+  color: #2575fc;
+}
+
+/* Button styling */
+.btn-primary {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Thank You Section */
+.thank-you {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  margin: 50px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.thank-you h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #4caf50;
+}
+
+.thank-you p {
+  font-size: 1.2rem;
+  color: #333;
+}

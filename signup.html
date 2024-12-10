@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="signup-wrapper">
+    <div class="signup-form">
+      <h1>Join <span class="brand-name">Share Bite</span></h1>
+      <p>Sign up and start making an impact today!</p>
+      <form id="signupForm">
+        <!-- Name Field -->
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
+        </div>
+
+        <!-- Role Dropdown -->
+        <div class="form-group">
+          <label for="role"><i class="fas fa-user-tag"></i> I am a:</label>
+          <select id="role" name="role" class="animated-dropdown" required>
+            <option value="" disabled selected>Choose an option</option>
+            <option value="donor">Donor</option>
+            <option value="ngo">NGO</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const role = document.getElementById("role").value;
+      if (role === "donor") {
+        window.location.href = "donor.html";
+      } else if (role === "ngo") {
+        window.location.href = "ngo.html";
+      } else {
+        alert("Please select a role!");
+      }
+    });
+  </script>
+</body>
+</html>

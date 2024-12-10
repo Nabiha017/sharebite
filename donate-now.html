@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate Now</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="donate-now-styles.css">
+</head>
+<body>
+
+  <!-- Navbar (now at the top) -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Feed Hope Logo">
+      <span>Share Bite</span>
+    </div>
+    <div class="nav-icons">
+      <a href="donor.html" class="nav-item" title="Home"><i class="fas fa-home"></i></a>
+      <a href="#" class="nav-item" title="Favorite" onclick="displayMyDonations()">
+        <i class="fas fa-heart"></i>
+        <span id="donation-count" class="badge"></span> <!-- Badge for donation count -->
+      </a>
+      <a href="#" class="nav-item" title="Notifications"><i class="fas fa-bell"></i></a>
+     
+      <a href="profile.html" class="nav-item" title="Profile"><i class="fas fa-user"></i></a>
+    </div>
+  </nav>
+
+  <!-- Donation Form Section -->
+  <section class="donation-form" id="donationFormSection">
+    <h2>Donate Food</h2>
+    <p>Complete the form below to donate food to those in need. Your kindness matters.</p>
+    
+    <form id="donationForm" action="#" method="POST">
+      <div class="form-group">
+        <label for="food-type">Type of Food</label>
+        <input type="text" id="food-type" name="food-type" placeholder="E.g., Bread, Fruits, etc." required>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Quantity (kg)</label>
+        <input type="number" id="quantity" name="quantity" placeholder="Enter quantity in kg" required>
+      </div>
+
+     
+      <div class="form-group">
+        <label for="contact">Your Contact Number</label>
+        <input type="text" id="contact" name="contact" placeholder="Enter your phone number" required>
+      </div>
+ <div class="form-group">
+        <label for="location">Pickup Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter address for pickup" required>
+      </div>
+
+
+      <button type="submit" class="btn-primary">Submit Donation</button>
+    </form>
+  </section>
+
+  <!-- Thank You Note Section (hidden by default) -->
+  <section class="thank-you" id="thankYouSection" style="display: none;">
+    <h2>Thank You!</h2>
+    <p>Your donation has been successfully submitted. We truly appreciate your generosity.</p>
+  </section>
+
+  <script>
+    // Handle form submission
+    document.getElementById("donationForm").addEventListener("submit", function(event) {
+      event.preventDefault();  // Prevent form from submitting to a server
+
+      // Collect form data
+      const foodType = document.getElementById("food-type").value;
+      const quantity = document.getElementById("quantity").value;
+      const location = document.getElementById("location").value;
+      const contact = document.getElementById("contact").value;
+
+      // Store data in localStorage
+      let donations = JSON.parse(localStorage.getItem("donations")) || [];
+      donations.push({ foodType, quantity, location, contact });
+      localStorage.setItem("donations", JSON.stringify(donations));
+
+      // Update donation count in the navbar
+      updateDonationCount();
+
+      // Hide the form and show the Thank You message
+      document.getElementById("donationFormSection").style.display = "none";
+      document.getElementById("thankYouSection").style.display = "block";
+    });
+
+    // Update donation count in navbar (heart icon)
+    function updateDonationCount() {
+      const donations = JSON.parse(localStorage.getItem("donations")) || [];
+      document.getElementById("donation-count").textContent = donations.length;
+    }
+
+    // Display My Donations when clicking the heart icon
+    function displayMyDonations() {
+      const donations = JSON.parse(localStorage.getItem("donations")) || [];
+      if (donations.length === 0) {
+        alert("No donations submitted yet.");
+      } else {
+        let donationList = "Your Donations:\n";
+        donations.forEach((donation, index) => {
+          donationList += `${index + 1}. ${donation.foodType} - ${donation.quantity}kg, Pickup: ${donation.location}, Contact: ${donation.contact}\n`;
+        });
+        alert(donationList);  // Show donation list in an alert
+      }
+    }
+
+    // Initialize donation count when the page loads
+    window.onload = updateDonationCount;
+  </script>
+
+</body>
+</html>
